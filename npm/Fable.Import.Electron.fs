@@ -42,24 +42,24 @@ module Electron =
         inherit NodeJS.EventEmitter
         abstract commandLine: CommandLine with get, set
         abstract dock: Dock with get, set
-        [<Emit("$0.on('will-finish-launching',$1...)")>] abstract ``on_will-finish-launching``: listener: Function -> obj
-        [<Emit("$0.on('ready',$1...)")>] abstract on_ready: listener: Function -> obj
-        [<Emit("$0.on('window-all-closed',$1...)")>] abstract ``on_window-all-closed``: listener: Function -> obj
-        [<Emit("$0.on('before-quit',$1...)")>] abstract ``on_before-quit``: listener: Func<Event, unit> -> obj
-        [<Emit("$0.on('will-quit',$1...)")>] abstract ``on_will-quit``: listener: Func<Event, unit> -> obj
-        [<Emit("$0.on('quit',$1...)")>] abstract on_quit: listener: Func<Event, float, unit> -> obj
-        [<Emit("$0.on('open-file',$1...)")>] abstract ``on_open-file``: listener: Func<Event, string, unit> -> obj
-        [<Emit("$0.on('open-url',$1...)")>] abstract ``on_open-url``: listener: Func<Event, string, unit> -> obj
-        [<Emit("$0.on('activate',$1...)")>] abstract on_activate: listener: Function -> obj
-        [<Emit("$0.on('browser-window-blur',$1...)")>] abstract ``on_browser-window-blur``: listener: Func<Event, BrowserWindow, unit> -> obj
-        [<Emit("$0.on('browser-window-focus',$1...)")>] abstract ``on_browser-window-focus``: listener: Func<Event, BrowserWindow, unit> -> obj
-        [<Emit("$0.on('browser-window-created',$1...)")>] abstract ``on_browser-window-created``: listener: Func<Event, BrowserWindow, unit> -> obj
-        [<Emit("$0.on('certificate-error',$1...)")>] abstract ``on_certificate-error``: listener: Func<Event, WebContents, string, string, Certificate, Func<bool, unit>, unit> -> obj
-        [<Emit("$0.on('select-client-certificate',$1...)")>] abstract ``on_select-client-certificate``: listener: Func<Event, WebContents, string, ResizeArray<Certificate>, Func<Certificate, unit>, unit> -> obj
-        [<Emit("$0.on('login',$1...)")>] abstract on_login: listener: Func<Event, WebContents, LoginRequest, LoginAuthInfo, Func<string, string, unit>, unit> -> obj
-        [<Emit("$0.on('gpu-process-crashed',$1...)")>] abstract ``on_gpu-process-crashed``: listener: Function -> obj
-        [<Emit("$0.on('platform-theme-changed',$1...)")>] abstract ``on_platform-theme-changed``: listener: Function -> obj
-        abstract on: ``event``: string * listener: Function -> obj
+        [<Emit("$0.on('will-finish-launching',$1...)")>] abstract willFinishLaunching: listener: Function -> obj
+        [<Emit("$0.on('ready',$1...)")>] abstract ready: listener: Function -> obj
+        [<Emit("$0.on('window-all-closed',$1...)")>] abstract windowAllClosed: listener: Function -> obj
+        [<Emit("$0.on('before-quit',$1...)")>] abstract beforeQuit: listener: Func<Event, unit> -> obj
+        [<Emit("$0.on('will-quit',$1...)")>] abstract willQuit: listener: Func<Event, unit> -> obj
+        [<Emit("$0.on('quit',$1...)")>] abstract quit: listener: Func<Event, float, unit> -> obj
+        [<Emit("$0.on('open-file',$1...)")>] abstract openFile: listener: Func<Event, string, unit> -> obj
+        [<Emit("$0.on('open-url',$1...)")>] abstract openUrl: listener: Func<Event, string, unit> -> obj
+        [<Emit("$0.on('activate',$1...)")>] abstract activate: listener: Function -> obj
+        [<Emit("$0.on('browser-window-blur',$1...)")>] abstract browserWindowBlur: listener: Func<Event, BrowserWindow, unit> -> obj
+        [<Emit("$0.on('browser-window-focus',$1...)")>] abstract browserWindowFocus: listener: Func<Event, BrowserWindow, unit> -> obj
+        [<Emit("$0.on('browser-window-created',$1...)")>] abstract browserWindowCreated: listener: Func<Event, BrowserWindow, unit> -> obj
+        [<Emit("$0.on('certificate-error',$1...)")>] abstract certificateError``: listener: Func<Event, WebContents, string, string, Certificate, Func<bool, unit>, unit> -> obj
+        [<Emit("$0.on('select-client-certificate',$1...)")>] abstract selectCientCertificate: listener: Func<Event, WebContents, string, ResizeArray<Certificate>, Func<Certificate, unit>, unit> -> obj
+        [<Emit("$0.on('login',$1...)")>] abstract login: listener: Func<Event, WebContents, LoginRequest, LoginAuthInfo, Func<string, string, unit>, unit> -> obj
+        [<Emit("$0.on('gpu-process-crashed',$1...)")>] abstract gpuProcessCrashed: listener: Function -> obj
+        [<Emit("$0.on('platform-theme-changed',$1...)")>] abstract platformThemeChanged: listener: Function -> obj
+        abstract on: eventName: string * listener: Function -> obj
         abstract quit: unit -> unit
         abstract exit: exitCode: float -> unit
         abstract focus: unit -> unit
@@ -115,12 +115,12 @@ module Electron =
 
     and AutoUpdater =
         inherit NodeJS.EventEmitter
-        [<Emit("$0.on('error',$1...)")>] abstract on_error: listener: Func<Error, unit> -> obj
-        [<Emit("$0.on('checking-for-update',$1...)")>] abstract ``on_checking-for-update``: listener: Function -> obj
-        [<Emit("$0.on('update-available',$1...)")>] abstract ``on_update-available``: listener: Function -> obj
-        [<Emit("$0.on('update-not-available',$1...)")>] abstract ``on_update-not-available``: listener: Function -> obj
-        [<Emit("$0.on('update-downloaded',$1...)")>] abstract ``on_update-downloaded``: listener: Func<Event, string, string, DateTime, string, unit> -> obj
-        abstract on: ``event``: string * listener: Function -> obj
+        [<Emit("$0.on('error',$1...)")>] abstract error: listener: Func<Error, unit> -> obj
+        [<Emit("$0.on('checking-for-update',$1...)")>] abstract checkingForUpdate: listener: Function -> obj
+        [<Emit("$0.on('update-available',$1...)")>] abstract updateAvailable: listener: Function -> obj
+        [<Emit("$0.on('update-not-available',$1...)")>] abstract updateNotAvailable``: listener: Function -> obj
+        [<Emit("$0.on('update-downloaded',$1...)")>] abstract updateDownloaded: listener: Func<Event, string, string, DateTime, string, unit> -> obj
+        abstract on: eventType: string * listener: Function -> obj
         abstract setFeedURL: url: string -> unit
         abstract checkForUpdates: unit -> unit
         abstract quitAndInstall: unit -> unit
